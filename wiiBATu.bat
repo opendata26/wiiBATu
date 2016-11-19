@@ -97,7 +97,7 @@ if %preset_choice% == 3 curl --remote-name-all %zipsurl%%conventional%
 if %preset_choice% == 4 curl --remote-name-all %zipsurl%%conventional_dark%
 if %preset_choice% == 5 curl --remote-name-all %zipsurl%%hacker%
 if %preset_choice% == 6 curl --remote-name-all %zipsurl%%hacker_light%
-7za x * -o%~dp0\for_sd
+7za x * -o%~dp0\for_sd\wiiu
 pause
 goto start
 
