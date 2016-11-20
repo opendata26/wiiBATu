@@ -38,7 +38,6 @@ set hblzip=homebrew_launcher.zip
 set wupyzip=wupymod.zip
 set hbaszip=appstore.zip
 set hbldarkzip=hbldark.zip
-set hbasdarkzip=Appstore-dark.zip
 set ftpiiuzip=ftpiiu.zip
 set cfwbooterzip=cfwbooter.zip
 set ourloaderzip=ourloader.zip
@@ -50,10 +49,10 @@ set fsdumperzip=fsdumper.zip
 
 ::Define presets
 set simple={%hblzip%,%wupyzip%,%hbaszip%}
-set simple_dark={%hbldarkzip%,%wupyzip%,%hbasdarkzip%}
+set simple_dark={%hbldarkzip%,%wupyzip%,%hbaszip%}
 set conventional={%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbootzip%,%ourloaderzip%,%saviinezip%}
-set conventional_dark={%hbldarkzip%,%wupyzip%,%hbasdarkzip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%}
-set hacker={%hbldarkzip%,%wupyzip%,%hbasdarkzip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
+set conventional_dark={%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%}
+set hacker={%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
 set hacker_light={%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
 ::Database end
 
