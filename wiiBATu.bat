@@ -1,6 +1,6 @@
 @echo off
 
-
+curl -LO https://raw.githubusercontent.com/opendata26/wiiBATu/master/wiiBATu.bat
 :: Uses curl, which is available free at https://curl.haxx.se
 mkdir temp
 mkdir appcache
@@ -25,7 +25,7 @@ if not exist git (
 )
 
 ::add git too path temporaryly
-set gitdir=c:\portablegit
+set gitdir=%~dp0/git
 set path=%gitdir%\cmd;%path%
 
 ::Datebase for hombrew
