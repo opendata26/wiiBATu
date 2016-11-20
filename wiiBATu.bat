@@ -71,7 +71,8 @@ echo 2: Prepare things to compile rednand / wupserver
 echo 3: Download / Update rednand / wupserver
 echo 4: Compile wupserver and rednand
 echo 5: Install haxchi
-echo 6: Exit
+echo 6: Install wuphax
+echo 7: Exit
 set /p choice="What do you want to do: "
 
 if %choice%==1 goto prepare_sd
@@ -79,7 +80,8 @@ if %choice%==2 goto prepare_env
 if %choice%==3 goto download
 if %choice%==4 goto compile
 if %choice%==5 goto haxchi
-if %choice%==6 goto exit
+if %choice%==6 goto wuphax
+if %choice%==7 goto exit
 
 :prepare_sd
 cls
@@ -156,6 +158,18 @@ rm master.zip
 cd Haxchi_Installer-master
 echo Now running haxchi installer python script.
 C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe haxchi.py
+goto start
+
+:wuphax
+cd temp
+curl -LO https://github.com/opendata26/wuphax/releases/download/1.1/wuphax.zip
+7za x wuphax.zip
+cd wuphax 
+C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe ip.py
+C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe backup.py
+C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe injectdol.py
+C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe writedol.py
+echo After that is done, shut down your wiiu, unplug its power, make sure that no usb devices are currently plugged into your wiiu, replug it and go echo into wii mode. In wii mode, run the mii channel, this should start up the boot.elf on your sd card root, install homebrew channel from here.
 goto start
 
 :exit
