@@ -83,7 +83,7 @@ if %choice%==6 goto exit
 
 :prepare_sd
 cls
-echo 'What homebrew preset would you like to install, You will be able to install emulatoprs and games in the next step.'
+echo 'What homebrew preset would you like to install, You will be able to install emulators and games from the homebrew appstore.'
 echo '1: Simple (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store)'
 echo '2: Simple Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store)'
 echo '3: Conventional (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store, Ftpiiu, CFW Booter, OurLoader, Saviine)'
@@ -108,12 +108,12 @@ goto start
 cls
 cd temp
 curl -LO https://github.com/opendata26/armips/releases/download/9.0/armips.exe
-curl https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe > python-setup.exe
+curl -LO https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe
 curl -LOk "https://sourceforge.net/projects/devkitpro/files/Automated Installer/devkitProUpdater-1.6.0.exe"
 echo Files downloaded successfully! Now installing programs.
 echo Now installing python and pycrypto. Check the add python to PATH box and click the install now button to install.
 set /p tmp="Press any key to install python and pycrypto"
-python-setup
+python-3.5.2.exe
 C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe -m pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win32.whl pycrypto
 echo Now installing devkitarm and armips. Use default options until the choose components screen where you should untick everything except devkitarm and minimal system
 set /p tmp="Press any key to install devkitarm and armips"
