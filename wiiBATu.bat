@@ -1,28 +1,30 @@
 @echo off
 
-curl -LO https://raw.githubusercontent.com/opendata26/wiiBATu/master/wiiBATu.bat
 :: Uses curl, which is available free at https://curl.haxx.se
+
+curl -LO https://raw.githubusercontent.com/opendata26/wiiBATu/master/wiiBATu.bat
+cls
+
+::install git if it isnt installed already
+if not exist git (
+  echo Now downloading git and 7zip. This might take a while.
+  curl -LO https://github.com/opendata26/opendata26.github.io/raw/master/7za.exe
+  curl -LOk https://github.com/git-for-windows/git/releases/download/v2.10.2.windows.1/PortableGit-2.10.2-64-bit.7z.exe
+  7za x PortableGit-2.10.2-64-bit.7z.exe -o%~dp0/git
+  rm PortableGit-2.10.2-64-bit.7z.exe
+  cd git
+  git-bash.exe --no-needs-console --hide --no-cd --command=post-install.bat
+)
+
 mkdir temp
 mkdir appcache
 mkdir for_sd
 mkdir for_sd\wiiu
-cls
-curl -LO https://github.com/opendata26/opendata26.github.io/raw/master/7za.exe
 copy 7za.exe temp\
 copy curl.exe temp\
 copy curl.exe appcache\
 cls
 
-if not exist git (
-  echo Now downloading git and 7zip. This might take a while.
-  curl -LO https://github.com/opendata26/opendata26.github.io/raw/master/7za.exe
-  copy 7za.exe temp\
-  copy 7za.exe appcache\
-  curl -LOk https://github.com/git-for-windows/git/releases/download/v2.10.2.windows.1/PortableGit-2.10.2-64-bit.7z.exe
-  7za x PortableGit-2.10.2-64-bit.7z.exe -o%~dp0/git
-  cd git
-  git-bash.exe --no-needs-console --hide --no-cd --command=post-install.bat
-)
 
 ::add git too path temporaryly
 set gitdir=%~dp0/git
@@ -56,6 +58,7 @@ set hacker={%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourload
 set hacker_light={%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
 ::Database end
 
+echo Version 1.1
 echo Wupserver is also known as sigpatched sysnand.
 pause
 :start
