@@ -2,7 +2,7 @@
 
 :: Uses curl, which is available free at https://curl.haxx.se
 
-curl -LO https://raw.githubusercontent.com/opendata26/wiiBATu/master/wiiBATu.bat
+curl -O https://raw.githubusercontent.com/opendata26/wiiBATu/master/wiiBATu.bat
 cls
 
 ::install git if it isnt installed already
