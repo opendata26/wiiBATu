@@ -85,9 +85,9 @@ if %choice%==6 goto exit
 cls
 echo 'What homebrew preset would you like to install, You will be able to install emulatoprs and games in the next step.'
 echo '1: Simple (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store)'
-echo '2: Simple Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store Dark)'
+echo '2: Simple Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store)'
 echo '3: Conventional (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store, Ftpiiu, CFW Booter, OurLoader, Saviine)'
-echo '4: Conventional Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store Dark, Ftpiiu, CFW Booter, OurLoader, Saviine)'
+echo '4: Conventional Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store, Ftpiiu, CFW Booter, OurLoader, Saviine)'
 echo '5: Hacker (Everything in Conventional Dark + Ftpiiu Everywhere, Geckiine, FT2SD, FS Dumper)'
 echo '6: Hacker Light (Everything in Conventional + Ftpiiu Everywhere, Geckiine, FT2SD, FS Dumper)'
 set /p  preset_choice="What preset do you want: "
