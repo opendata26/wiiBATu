@@ -1,2 +1,2 @@
 # wiiBATu
-a tool to simplify wiiu things
+A simple tool to ease the process of setting up CFW/homebrew
