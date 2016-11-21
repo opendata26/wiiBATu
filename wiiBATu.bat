@@ -103,7 +103,7 @@ if %preset_choice% == 4 curl --remote-name-all %zipsurl%%conventional_dark%
 if %preset_choice% == 5 curl --remote-name-all %zipsurl%%hacker%
 if %preset_choice% == 6 curl --remote-name-all %zipsurl%%hacker_light%
 7za x *.zip -o%~dp0\for_sd\wiiu
-echo put everything in the for_sd folder on your sdcard
+echo put everything in the for_sd folder onto your sdcard
 pause
 goto start
 
