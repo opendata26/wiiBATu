@@ -18,7 +18,7 @@ if not exist git (
 if not exist C:\python27 (
   curl -LO https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi
   echo Now installing python.
-  set /p tmp="Press any key to install python"
+  set /p tmp="Press any key to install python, Make sure you select add to path"
   python-2.7.12.msi
   del python-2.7.12.msi
 )
