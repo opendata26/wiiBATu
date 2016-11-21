@@ -23,6 +23,7 @@ mkdir for_sd\wiiu
 copy 7za.exe temp\
 copy curl.exe temp\
 copy curl.exe appcache\
+copy 7za.exe appcache\
 cls
 
 
@@ -40,7 +41,7 @@ set otp2sd=otp2sd.zip
 set hblzip=homebrew_launcher.zip
 set wupyzip=wupymod.zip
 set hbaszip=appstore.zip
-set hbldarkzip=hbldark.zip
+set hbldarkzip=hbl_dark.zip
 set ftpiiuzip=ftpiiu.zip
 set cfwbooterzip=cfwbooter.zip
 set ourloaderzip=ourloader.zip
@@ -94,7 +95,6 @@ echo '4: Conventional Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew 
 echo '5: Hacker (Everything in Conventional Dark + Ftpiiu Everywhere, Geckiine, FT2SD, FS Dumper)'
 echo '6: Hacker Light (Everything in Conventional + Ftpiiu Everywhere, Geckiine, FT2SD, FS Dumper)'
 set /p  preset_choice="What preset do you want: "
-@echo off
 cd appcache
 if %preset_choice% == 1 curl --remote-name-all %zipsurl%%simple%
 if %preset_choice% == 2 curl --remote-name-all %zipsurl%%simple_dark%
@@ -122,6 +122,8 @@ echo Now installing devkitarm and armips. Use default options until the choose c
 set /p tmp="Press any key to install devkitarm and armips"
 devkitProUpdater-1.6.0.exe
 copy armips.exe C:\devkitPro\msys\bin
+echo done!
+pause
 goto start
 
 :download
@@ -129,13 +131,15 @@ cls
 if exist iosuhax (
   cd iosuhax
   git pull
-  pause 1
+  pause
 ) else (
   git clone https://github.com/dimok789/iosuhax.git
-  echo Please dump your otp by running otp2sd  on your wiiu, after it returns to hbl/homescreen put your sd in your pc and copy the otp.bin file on it to the same directory as wiiBATu (otp2sd is included in all of this tools homebrew presets).
+  echo Please put your otp.bin dumped with otp2sd, which is included in all the app presets, in the same directory as this batch file and hit enter.
   pause
   cd iosuhax/bin
   C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe getfwimg.py
+  echo if you get eny errors you need to redump your otp.bin
+  pause
 )
 goto start
 
@@ -165,7 +169,7 @@ goto start
 cd temp
 curl -LO https://github.com/opendata26/wuphax/releases/download/1.1/wuphax.zip
 7za x wuphax.zip
-cd wuphax 
+cd wuphax
 C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe ip.py
 C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe backup.py
 C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe injectdol.py
