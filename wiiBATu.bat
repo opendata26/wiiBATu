@@ -36,6 +36,7 @@ set path=%gitdir%\cmd;%path%
 set zipsurl=http://www.wiiubru.com/appstore/zips/
 
 ::Define zip file name
+set otp2sd=otp2sd.zip
 set hblzip=homebrew_launcher.zip
 set wupyzip=wupymod.zip
 set hbaszip=appstore.zip
@@ -50,12 +51,12 @@ set ft2sdzip=ft2sd.zip
 set fsdumperzip=fsdumper.zip
 
 ::Define presets
-set simple={%hblzip%,%wupyzip%,%hbaszip%}
-set simple_dark={%hbldarkzip%,%wupyzip%,%hbaszip%}
-set conventional={%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbootzip%,%ourloaderzip%,%saviinezip%}
-set conventional_dark={%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%}
-set hacker={%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
-set hacker_light={%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
+set simple={%otp2sd%,%hblzip%,%wupyzip%,%hbaszip%}
+set simple_dark={%otp2sd%,%hbldarkzip%,%wupyzip%,%hbaszip%}
+set conventional={%otp2sd%,%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbootzip%,%ourloaderzip%,%saviinezip%}
+set conventional_dark={%otp2sd%,%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%}
+set hacker={%otp2sd%,%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
+set hacker_light={%otp2sd%,%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
 ::Database end
 
 echo Version 1.1
@@ -85,7 +86,7 @@ if %choice%==7 goto exit
 
 :prepare_sd
 cls
-echo 'What homebrew preset would you like to install, You will be able to install emulators and games from the homebrew appstore.'
+echo 'What homebrew preset would you like to install, You will be able to install emulators and games from the homebrew appstore. They all include otp2sd as its needed later'
 echo '1: Simple (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store)'
 echo '2: Simple Dark (Hombrew launcher Dark, WUP Installer Y Mod, Hombrew App Store)'
 echo '3: Conventional (Hombrew launcher, WUP Installer Y Mod, Hombrew App Store, Ftpiiu, CFW Booter, OurLoader, Saviine)'
@@ -131,7 +132,7 @@ if exist iosuhax (
   pause 1
 ) else (
   git clone https://github.com/dimok789/iosuhax.git
-  echo Please put your otp.bin dumped with http://wiiubru.com/appstore/zips/otp2sd.zip in the same directory as this batch file and hit enter.
+  echo Please dump your otp by running otp2sd  on your wiiu, after it returns to hbl/homescreen put your sd in your pc and copy the otp.bin file on it to the same directory as wiiBATu (otp2sd is included in all of this tools homebrew presets).
   pause
   cd iosuhax/bin
   C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe getfwimg.py
