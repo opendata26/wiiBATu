@@ -11,9 +11,16 @@ if not exist git (
   curl -LO https://github.com/opendata26/opendata26.github.io/raw/master/7za.exe
   curl -LOk https://github.com/git-for-windows/git/releases/download/v2.10.2.windows.1/PortableGit-2.10.2-64-bit.7z.exe
   7za x PortableGit-2.10.2-64-bit.7z.exe -o%~dp0/git
-  rm PortableGit-2.10.2-64-bit.7z.exe
+  del PortableGit-2.10.2-64-bit.7z.exe
   cd git
   git-bash.exe --no-needs-console --hide --no-cd --command=post-install.bat
+)
+if not exist C:\python27 (
+  curl -LO https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi
+  echo Now installing python.
+  set /p tmp="Press any key to install python"
+  python-2.7.12.msi
+  del python-2.7.12.msi
 )
 
 mkdir temp
@@ -60,7 +67,7 @@ set hacker={%otp2sd%,%hbldarkzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%
 set hacker_light={%otp2sd%,%hblzip%,%wupyzip%,%hbaszip%,%ftpiiuzip%,%cfwbooterzip%,%ourloaderzip%,%saviinezip%,%ftpiiueverywherezip%,%geckiinezip%,%ft2sdzip%,%fsdumperzip%}
 ::Database end
 
-echo Version 1.1
+echo Version 1.2
 echo Wupserver is also known as sigpatched sysnand.
 pause
 :start
@@ -111,13 +118,11 @@ goto start
 cls
 cd temp
 curl -LO https://github.com/opendata26/armips/releases/download/9.0/armips.exe
-curl -LO https://www.python.org/ftp/python/3.5.2/python-3.5.2.exe
 curl -LOk "https://sourceforge.net/projects/devkitpro/files/Automated Installer/devkitProUpdater-1.6.0.exe"
 echo Files downloaded successfully! Now installing programs.
 echo Now installing python and pycrypto. Check the add python to PATH box and click the install now button to install.
-set /p tmp="Press any key to install python and pycrypto"
-python-3.5.2.exe
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe -m pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win32.whl pycrypto
+set /p tmp="Press any key to pycrypto"
+C:\python27\python.exe -m pip install --use-wheel --no-index --find-links=https://bitbucket.org/alexandrul/wheels/downloads/pycrypto-2.6.1-cp27-none-win32.whl pycrypto
 echo Now installing devkitarm and armips. Use default options until the choose components screen where you should untick everything except devkitarm and minimal system
 set /p tmp="Press any key to install devkitarm and armips"
 devkitProUpdater-1.6.0.exe
@@ -137,7 +142,7 @@ if exist iosuhax (
   echo Please put your otp.bin dumped with otp2sd, which is included in all the app presets, in the same directory as this batch file and hit enter.
   pause
   cd iosuhax/bin
-  C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe getfwimg.py
+  C:\python27\python.exe getfwimg.py
   echo if you get eny errors you need to redump your otp.bin
   pause
 )
@@ -157,12 +162,14 @@ goto start
 cls
 cd %~dp0/temp
 echo Downloading required files
-curl -LO https://github.com/opendata26/Haxchi_Installer/archive/master.zip
+curl -LO https://github.com/vickdu31/Haxchi_Installer/archive/master.zip
 7za x master.zip
 rm master.zip
 cd Haxchi_Installer-master
 echo Now running haxchi installer python script.
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe haxchi.py
+C:\python27\python.exe haxchi_installer_v1.1.1.py
+echo done!
+pause
 goto start
 
 :wuphax
@@ -170,12 +177,14 @@ cd temp
 curl -LO https://github.com/opendata26/wuphax/releases/download/1.1/wuphax.zip
 7za x wuphax.zip
 cd wuphax
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe ip.py
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe backup.py
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe injectdol.py
-C:\Users\%USERNAME%\AppData\Local\Programs\Python\Python35-32\python.exe writedol.py
+C:\python27\python.exe ip.py
+C:\python27\python.exe backup.py
+C:\python27\python.exe injectdol.py
+C:\python27\python.exe writedol.py
 echo After that is done, shut down your wiiu, unplug its power, make sure that no usb devices are currently plugged into your wiiu, replug it and go echo into wii mode. In wii mode, run the mii channel, this should start up the boot.elf on your sd card root, install homebrew channel from here.
 goto start
+
+
 
 :exit
 rmdir temp /s /q
