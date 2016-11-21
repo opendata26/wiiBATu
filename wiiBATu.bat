@@ -80,7 +80,8 @@ echo 2: Prepare things to compile rednand / wupserver
 echo 3: Download / Update rednand / wupserver
 echo 4: Compile wupserver and rednand
 echo 5: Install haxchi
-echo 6: Install wuphax
+echo 6: Install regionhax
+::echo 7: Install wuphax
 echo 7: Exit
 set /p choice="What do you want to do: "
 
@@ -89,7 +90,8 @@ if %choice%==2 goto prepare_env
 if %choice%==3 goto download
 if %choice%==4 goto compile
 if %choice%==5 goto haxchi
-if %choice%==6 goto wuphax
+if %choice%==6 goto regionhax
+::if %choice%==7 goto wuphax
 if %choice%==7 goto exit
 
 :prepare_sd
@@ -168,6 +170,20 @@ rm master.zip
 cd Haxchi_Installer-master
 echo Now running haxchi installer python script.
 C:\python27\python.exe haxchi_installer_v1.1.1.py
+echo done!
+pause
+goto start
+
+:regionhax
+cls
+cd %~dp0/temp
+echo Downloading required files
+curl -LO https://github.com/opendata26/regionHAX-installer/archive/master.zip
+7za x master.zip
+rm master.zip
+cd regionHAX-installer-master
+echo Now running regionHAX installer python script.
+C:\python27\python.exe regionhax_installer_v1.0.py
 echo done!
 pause
 goto start
