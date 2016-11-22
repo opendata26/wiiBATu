@@ -81,8 +81,8 @@ echo 3: Download / Update rednand / wupserver
 echo 4: Compile wupserver and rednand
 echo 5: Install haxchi
 echo 6: Install regionhax
-::echo 7: Install wuphax
-echo 7: Exit
+echo 7: Install wuphax
+echo 8: Exit
 set /p choice="What do you want to do: "
 
 if %choice%==1 goto prepare_sd
@@ -91,8 +91,8 @@ if %choice%==3 goto download
 if %choice%==4 goto compile
 if %choice%==5 goto haxchi
 if %choice%==6 goto regionhax
-::if %choice%==7 goto wuphax
-if %choice%==7 goto exit
+if %choice%==7 goto wuphax
+if %choice%==8 goto exit
 
 :prepare_sd
 cls
