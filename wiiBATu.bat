@@ -105,12 +105,12 @@ echo '5: Hacker (Everything in Conventional Dark + Ftpiiu Everywhere, Geckiine, 
 echo '6: Hacker Light (Everything in Conventional + Ftpiiu Everywhere, Geckiine, FT2SD, FS Dumper)'
 set /p  preset_choice="What preset do you want: "
 cd appcache
-if %preset_choice% == 1 curl --remote-name-all %zipsurl%%simple%
-if %preset_choice% == 2 curl --remote-name-all %zipsurl%%simple_dark%
-if %preset_choice% == 3 curl --remote-name-all %zipsurl%%conventional%
-if %preset_choice% == 4 curl --remote-name-all %zipsurl%%conventional_dark%
-if %preset_choice% == 5 curl --remote-name-all %zipsurl%%hacker%
-if %preset_choice% == 6 curl --remote-name-all %zipsurl%%hacker_light%
+if %preset_choice% == 1 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%simple%
+if %preset_choice% == 2 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%simple_dark%
+if %preset_choice% == 3 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%conventional%
+if %preset_choice% == 4 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%conventional_dark%
+if %preset_choice% == 5 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%hacker%
+if %preset_choice% == 6 curl --remote-name-all curl -e "http://www.wiiubru.com" %zipsurl%%hacker_light%
 7za x *.zip -o%~dp0\for_sd\wiiu
 echo put everything in the for_sd folder onto your sdcard
 pause
