@@ -14,6 +14,16 @@ if not exist git (
   del PortableGit-2.10.2-64-bit.7z.exe
   cd git
   git-bash.exe --no-needs-console --hide --no-cd --command=post-install.bat
+  cd %~dp0/
+  mkdir temp
+  mkdir appcache
+  mkdir for_sd
+  mkdir for_sd\wiiu
+  copy 7za.exe temp\
+  copy curl.exe temp\
+  copy curl.exe appcache\
+  copy 7za.exe appcache\
+  cls
 )
 if not exist C:\python27 (
   curl -LO https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi
@@ -21,6 +31,15 @@ if not exist C:\python27 (
   set /p tmp="Press any key to install python, Make sure you select add to path"
   python-2.7.12.msi
   del python-2.7.12.msi
+  mkdir temp
+  mkdir appcache
+  mkdir for_sd
+  mkdir for_sd\wiiu
+  copy 7za.exe temp\
+  copy curl.exe temp\
+  copy curl.exe appcache\
+  copy 7za.exe appcache\
+  cls
 )
 
 mkdir temp
@@ -50,6 +69,7 @@ set wupyzip=wupymod.zip
 set hbaszip=appstore.zip
 set hbldarkzip=hbl_dark.zip
 set ftpiiuzip=ftpiiu.zip
+set ftpiiueverywherezip=ftpiiu_everywhere.zip
 set cfwbooterzip=cfwbooter.zip
 set ourloaderzip=ourloader.zip
 set saviinezip=saviine.zip
@@ -57,6 +77,8 @@ set ftpiiuezip=ftpiiu_everywhere.zip
 set geckiinezip=geckiine.zip
 set ft2sdzip=ft2sd.zip
 set fsdumperzip=fsdumper.zip
+set wuphaxzip=wuphax.zip
+set haxchizip=haxchi.zip
 
 ::Define presets
 set simple={%otp2sd%,%hblzip%,%wupyzip%,%hbaszip%}
@@ -76,8 +98,8 @@ cd %~dp0/
 echo An all in one script for wiiu things.
 echo What would you like to do?
 echo 1: Setup SDcard
-echo 2: Prepare things to compile rednand / wupserver
-echo 3: Download / Update rednand / wupserver
+echo 2: Prepare things to compile rednand and wupserver
+echo 3: Download / Update rednand and wupserver
 echo 4: Compile wupserver and rednand
 echo 5: Install haxchi
 echo 6: Install regionhax
@@ -89,9 +111,9 @@ if %choice%==1 goto prepare_sd
 if %choice%==2 goto prepare_env
 if %choice%==3 goto download
 if %choice%==4 goto compile
-if %choice%==5 goto haxchi
+if %choice%==5 goto haxchi_select
 if %choice%==6 goto regionhax
-if %choice%==7 goto wuphax
+if %choice%==7 goto wuphax_select
 if %choice%==8 goto exit
 
 :prepare_sd
@@ -160,7 +182,32 @@ make redNAND
 copy fw.img %~dp0\for_sd\rednand\
 goto start
 
-:haxchi
+:haxchi_select
+cls
+echo 1: Use HBL Method (Recomended, Haxchi game cant be on USB)
+echo 2: Use WupServer Method (Needs you to launch wupserver from cfwbooter)
+set /p haxchi_choice="What would you like to do: "
+if %haxchi_choice% == 1 goto haxchi_hbl
+if %haxchi_choice% == 2 goto haxchi_wupserv
+
+:haxchi_hbl
+cls
+cd appcache
+curl -LO https://github.com/FIX94/haxchi/releases/download/v2.2u1/Haxchi_v2.2u1.zip
+curl -LO https://github.com/opendata26/opendata26.github.io/raw/master/config.txt
+7za x Haxchi_v2.2u1.zip -o%~dp0\for_sd\
+copy config.txt %~dp0\for_sd\haxchi\
+echo Make sure you have unplugged all usbs from your wiiu then put all the things in the for_sd folder on your sd.
+echo Put your sd in your wiiu and run the Haxchi Installer in homebrew launcher, select the game you want to install it on and you are done.
+pause
+echo The button map is as follows:
+echo Hold A when booting haxchi to launch WupServer
+echo Hold B when booting haxchi to launch redNAND
+echo Do nothing when booting haxchi to launch HBL
+pause
+goto start
+
+:haxchi_wupserv
 cls
 cd %~dp0/temp
 echo Downloading required files
@@ -169,7 +216,7 @@ curl -LO https://github.com/vickdu31/Haxchi_Installer/archive/master.zip
 rm master.zip
 cd Haxchi_Installer-master
 echo Now running haxchi installer python script.
-C:\python27\python.exe haxchi_installer_v1.1.1.py
+C:\python27\python.exe haxchi_installer_v1.2.py
 echo done!
 pause
 goto start
@@ -188,16 +235,41 @@ echo done!
 pause
 goto start
 
-:wuphax
+
+:wuphax_select
+cls
+echo 1: Use HBL Method (Recomended)
+echo 2: Use WupServer Method (Needs you to launch wupserver from cfwbooter)
+set /p wuphax_choice="What would you like to do: "
+if %wuphax_choice% == 1 goto wuphax_hbl
+if %wuphax_choice% == 2 goto wuphax_wupserv
+
+:wuphax_hbl
+cls
+cd appcache
+curl -Oe "http://www.wiiubru.com" %zipsurl%%wuphaxzip%
+7za x wuphax.zip -o%~dp0\for_sd\wiiu
+cd %~dp0\temp\
+curl -LO "https://github.com/opendata26/opendata26.github.io/raw/master/boot.elf"
+copy boot.elf %~dp0\for_sd\
+echo Make sure you have unplugged all usbs from your wiiu then put all the things in the for_sd folder on your sd.
+echo Put your sd into your wiiu and boot wuphax from hbl. Follow the instructions and when your wiiu reboots run mii maker in vwii.
+pause
+goto start
+
+:wuphax_wupserv
+cls
 cd temp
-curl -LO https://github.com/opendata26/wuphax/releases/download/1.1/wuphax.zip
+curl -LO  https://github.com/opendata26/wuphax/releases/download/1.2/wuphax.zip
 7za x wuphax.zip
 cd wuphax
 C:\python27\python.exe ip.py
 C:\python27\python.exe backup.py
 C:\python27\python.exe injectdol.py
 C:\python27\python.exe writedol.py
-echo After that is done, shut down your wiiu, unplug its power, make sure that no usb devices are currently plugged into your wiiu, replug it and go echo into wii mode. In wii mode, run the mii channel, this should start up the boot.elf on your sd card root, install homebrew channel from here.
+echo Shut down your wiiu, unplug its power, make sure that no usb devices are currently plugged into your wiiu, replug it and go
+echo into wii mode. In wii mode, run the mii channel, this should start hackmii install the homebrew channel from there.
+pause
 goto start
 
 
